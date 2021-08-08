@@ -1,7 +1,6 @@
 
 import { createFilmCard } from './view/filmCard.js';
-import { createFilmListMostCommented } from './view/filmListMostCommented.js';
-import { createFilmListTopRated } from './view/filmListTopRated.js';
+import { createFilmListExtra } from './view/filmListExtra.js';
 import { createMainNavigation } from './view/main-navigation.js';
 import { createFooter } from './view/site-footer.js';
 import { createHeader } from './view/site-header.js';
@@ -28,18 +27,16 @@ const filmListContainer = filmContainer.querySelector('.films-list__container');
 for (let i=0; i < countCards; i++){
 render(filmListContainer, createFilmCard(), 'beforeend');
 }
-render(filmContainer, createFilmListTopRated(), 'beforeend');
-render(filmContainer, createFilmListMostCommented(), 'beforeend');
+
+render(filmContainer, createFilmListExtra(), 'beforeend');
+render(filmContainer, createFilmListExtra(), 'beforeend');
+
+
 render(headerElement, createHeader(), 'beforeend');
 render(footerElement, createFooter(), 'beforeend');
 
 
-const filmTopRatedContainer = mainElement.querySelector('.top_rated');
-const filmMostCommented = mainElement.querySelector('.most_commented');
 
-render(filmTopRatedContainer, createFilmCard(), 'beforeend');
-render(filmTopRatedContainer, createFilmCard(), 'beforeend');
-render(filmMostCommented, createFilmCard(), 'beforeend');
-render(filmMostCommented, createFilmCard(), 'beforeend');
+
 
 
