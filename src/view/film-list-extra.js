@@ -1,4 +1,4 @@
-import { createFilmCard } from './filmCard.js';
+import { createFilmCard } from './film-card.js';
 
 export const createFilmListExtra = () => (
   `<section class="films-list films-list--extra">
@@ -9,4 +9,4 @@ export const createFilmListExtra = () => (
   ${ createFilmCard() }
   </div>
 </section>`
-)
+);

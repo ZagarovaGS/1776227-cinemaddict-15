@@ -1,5 +1,5 @@
 export const createListMovies = () =>(
-`<section class="films">
+  `<section class="films">
 <section class="films-list">
   <h2 class="films-list__title visually-hidden">All movies. Upcoming</h2>
 
@@ -10,4 +10,4 @@ export const createListMovies = () =>(
   <button class="films-list__show-more">Show more</button>
 </section>
 </section>`
-)
+);
