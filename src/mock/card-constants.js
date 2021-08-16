@@ -37,4 +37,13 @@ const GENRE = ['Musical', 'Drama', 'Action', 'Detective', 'Crime', 'Comedy'];
 const DIRECTORS = ['Nic Ford', 'Alex Polly', 'Mikky Gordon', 'Tina log'];
 const WRITERS = ['Aash Aaron', 'J.J. Abrams', 'Jim Abrahams', 'Jon Avnet', 'Don Adams'];
 const ACTORS = ['Kevin Bacon', 'Kyle MacLachlan', 'Sigourney Weaver', 'Susan Sarandon', 'Sandra Bullock'];
- export { POSTERS, DESCRIPTION, COMMENT_TEXT, RATING, GENRE, DIRECTORS, WRITERS, ACTORS };
+const COUTRIES = ['Argentina', 'China', 'Colombia', 'Germany', 'Italy', 'Russia', 'USA', 'Spain'];
+const EXTRA_FILM_TYPES = ['Top rated', 'Most commented'];
+const EMOTIONS = [
+  'angry.png',
+  'puke.png',
+  'sleeping.png',
+  'smile.png'
+];
+
+export { POSTERS, DESCRIPTION, COMMENT_TEXT, RATING, GENRE, DIRECTORS, WRITERS, ACTORS, COUTRIES, EXTRA_FILM_TYPES, EMOTIONS };

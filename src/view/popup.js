@@ -1,5 +1,7 @@
-export const createPopupTemplate = (popup) =>{
-  const { poster, description, date, comment_text, title, total_rating, genre, duration, age_rating, director, writers, actors} = popup;
+export const createPopupTemplate = (popup, userComment) =>{
+  const { film_info} = popup;
+  const { id, author, comment, date, emotion} = userComment;
+
  return `<section class="film-details">
   <form class="film-details__inner" action="" method="get">
     <div class="film-details__top-container">
@@ -8,50 +10,50 @@ export const createPopupTemplate = (popup) =>{
       </div>
       <div class="film-details__info-wrap">
         <div class="film-details__poster">
-          <img class="film-details__poster-img" src=${poster} alt="">
+          <img class="film-details__poster-img" src=${film_info.poster} alt="">
 
-          <p class="film-details__age">${age_rating}</p>
+          <p class="film-details__age">${film_info.age_rating}</p>
         </div>
 
         <div class="film-details__info">
           <div class="film-details__info-head">
             <div class="film-details__title-wrap">
-              <h3 class="film-details__title">${title}</h3>
-              <p class="film-details__title-original">Original: ${title}</p>
+              <h3 class="film-details__title">${film_info.title}</h3>
+              <p class="film-details__title-original">Original: ${film_info.title}</p>
             </div>
 
             <div class="film-details__rating">
-              <p class="film-details__total-rating">${total_rating}</p>
+              <p class="film-details__total-rating">${film_info.total_rating}</p>
             </div>
           </div>
 
           <table class="film-details__table">
             <tr class="film-details__row">
               <td class="film-details__term">Director</td>
-              <td class="film-details__cell">${director}</td>
+              <td class="film-details__cell">${film_info.director}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Writers</td>
-              <td class="film-details__cell">${writers}</td>
+              <td class="film-details__cell">${film_info.writers}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Actors</td>
-              <td class="film-details__cell">${actors}</td>
+              <td class="film-details__cell">${film_info.actors}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Release Date</td>
-              <td class="film-details__cell">${date}</td>
+              <td class="film-details__cell">${film_info.release.date}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Runtime</td>
-              <td class="film-details__cell">${duration}</td>
+              <td class="film-details__cell">${film_info.runtime}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Country</td>
-              <td class="film-details__cell">USA</td>
+              <td class="film-details__cell">${film_info.release.release_coutry}</td>
             </tr>
             <tr class="film-details__row">
-              <td class="film-details__term">${genre}</td>
+              <td class="film-details__term">${film_info.genre}</td>
               <td class="film-details__cell">
                 <span class="film-details__genre">Drama</span>
                 <span class="film-details__genre">Film-Noir</span>
@@ -61,7 +63,7 @@ export const createPopupTemplate = (popup) =>{
           </table>
 
           <p class="film-details__film-description">
-           ${description}
+           ${film_info.description}
           </p>
         </div>
       </div>
@@ -79,57 +81,18 @@ export const createPopupTemplate = (popup) =>{
 
     <div class="film-details__bottom-container">
       <section class="film-details__comments-wrap">
-        <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">4</span></h3>
+        <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${id}</span></h3>
 
         <ul class="film-details__comments-list">
           <li class="film-details__comment">
             <span class="film-details__comment-emoji">
-              <img src="./images/emoji/smile.png" width="55" height="55" alt="emoji-smile">
+              <img src=${emotion} width="55" height="55" alt="emoji-smile">
             </span>
             <div>
-              <p class="film-details__comment-text">Interesting setting and a good cast</p>
+              <p class="film-details__comment-text">${comment}</p>
               <p class="film-details__comment-info">
-                <span class="film-details__comment-author">Tim Macoveev</span>
-                <span class="film-details__comment-day">2019/12/31 23:59</span>
-                <button class="film-details__comment-delete">Delete</button>
-              </p>
-            </div>
-          </li>
-          <li class="film-details__comment">
-            <span class="film-details__comment-emoji">
-              <img src="./images/emoji/sleeping.png" width="55" height="55" alt="emoji-sleeping">
-            </span>
-            <div>
-              <p class="film-details__comment-text">Booooooooooring</p>
-              <p class="film-details__comment-info">
-                <span class="film-details__comment-author">John Doe</span>
-                <span class="film-details__comment-day">2 days ago</span>
-                <button class="film-details__comment-delete">Delete</button>
-              </p>
-            </div>
-          </li>
-          <li class="film-details__comment">
-            <span class="film-details__comment-emoji">
-              <img src="./images/emoji/puke.png" width="55" height="55" alt="emoji-puke">
-            </span>
-            <div>
-              <p class="film-details__comment-text">Very very old. Meh</p>
-              <p class="film-details__comment-info">
-                <span class="film-details__comment-author">John Doe</span>
-                <span class="film-details__comment-day">2 days ago</span>
-                <button class="film-details__comment-delete">Delete</button>
-              </p>
-            </div>
-          </li>
-          <li class="film-details__comment">
-            <span class="film-details__comment-emoji">
-              <img src="./images/emoji/angry.png" width="55" height="55" alt="emoji-angry">
-            </span>
-            <div>
-              <p class="film-details__comment-text">Almost two hours? Seriously?</p>
-              <p class="film-details__comment-info">
-                <span class="film-details__comment-author">John Doe</span>
-                <span class="film-details__comment-day">Today</span>
+                <span class="film-details__comment-author">${author}</span>
+                <span class="film-details__comment-day">${date}</span>
                 <button class="film-details__comment-delete">Delete</button>
               </p>
             </div>

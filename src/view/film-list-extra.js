@@ -1,9 +1,9 @@
 import { createFilmCardTemplate } from './film-card.js';
 
-export const createFilmExtraListTemplate = (card) => {
+export const createFilmExtraListTemplate = (card, filmType) => {
 
   return `<section class="films-list films-list--extra">
-  <h2 class="films-list__title">Top rated</h2>
+  <h2 class="films-list__title">${filmType}</h2>
 
   <div class="films-list__container">
   ${ createFilmCardTemplate(card) }
