@@ -1,25 +1,56 @@
 import dayjs from 'dayjs';
+import { cards } from '../main.js';
 
-const getRandomBetween = (min, max, dec) => {
+const getRandomBetween = (min, max) =>
+  Math.round(Math.random() * (max - min) + min);
 
-  const pow = Math.pow(10, dec);
-  const result = Math.round((Math.random() * (max - min) + min) * pow) / pow;
-
-  return result;
-};
-
-const getRandomIndex = (filmData) => getRandomBetween(0, filmData.length-1, 0);
+const getRandomIndex = (filmData) => getRandomBetween(0, filmData.length - 1);
 const getFilmDescription = (description) => {
   const filmDescriptions = [];
-  for (let i = 0; i < getRandomBetween(1, 5, 0); i++){
-
-   filmDescriptions.push(description[getRandomIndex(description)]);
+  for (let i = 0; i < getRandomBetween(1, 5); i++) {
+    filmDescriptions.push(description[getRandomIndex(description)]);
   }
   return filmDescriptions;
-}
+};
 
-const createTitle = (title) => title.replace((/.png|.jpg|-/g), ' ');
+const generateDate = () => dayjs('12-25-2001', ['YYYY-MM-DD']);
 
-const generateDate = () => dayjs("12-25-2001", [ "YYYY-MM-DD"]);
+let watchListCount = 0;
+const getWatchlistCount = () =>
+  cards.forEach((user) => {
+    if (user.user_details.watchlist === true) {
+      watchListCount++;
+    }
+    return watchListCount;
+  });
 
-export { getRandomBetween, getRandomIndex, getFilmDescription, createTitle, generateDate };
+let historyListCount = 0;
+const getHistoryListCount = () =>
+  cards.forEach((user) => {
+    if (user.user_details.already_watched === true) {
+      historyListCount++;
+    }
+    return historyListCount;
+  });
+
+let favoriteListCount = 0;
+const getFavoriteListCount = () =>
+  cards.forEach((user) => {
+    if (user.user_details.favorite === true) {
+      favoriteListCount++;
+    }
+    return favoriteListCount;
+  });
+
+export {
+  getRandomBetween,
+  getRandomIndex,
+  getFilmDescription,
+  generateDate,
+  getWatchlistCount,
+  watchListCount,
+  getHistoryListCount,
+  historyListCount,
+  favoriteListCount,
+  getFavoriteListCount
+};

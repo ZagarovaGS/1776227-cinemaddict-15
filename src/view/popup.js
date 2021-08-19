@@ -2,7 +2,7 @@ export const createPopupTemplate = (popup, userComment) =>{
   const { film_info} = popup;
   const { id, author, comment, date, emotion} = userComment;
 
- return `<section class="film-details">
+  return `<section class="film-details">
   <form class="film-details__inner" action="" method="get">
     <div class="film-details__top-container">
       <div class="film-details__close">
@@ -136,5 +136,5 @@ export const createPopupTemplate = (popup, userComment) =>{
       </section>
     </div>
   </form>
-</section>`
+</section>`;
 };

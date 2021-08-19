@@ -5,7 +5,7 @@ const POSTERS = [
   'santa-claus-conquers-the-martians.jpg',
   'the-dance-of-life.jpg',
   'the-great-flamarion.jpg',
-  'the-man-with-the-golden-arm.jpg'
+  'the-man-with-the-golden-arm.jpg',
 ];
 
 const DESCRIPTION = [
@@ -19,7 +19,7 @@ const DESCRIPTION = [
   'Sed sed nisi sed augue convallis suscipit in sed felis.',
   'Aliquam erat volutpat.',
   'Nunc fermentum tortor ac porta dapibus.',
-  'In rutrum ac purus sit amet tempus.'
+  'In rutrum ac purus sit amet tempus.',
 ];
 
 const COMMENT_TEXT = [
@@ -29,21 +29,49 @@ const COMMENT_TEXT = [
   'Philosophical film',
   'I really want to look again',
   'A very strange movie',
-  'I watched this film for the first time in a cinema. I liked it very much'
+  'I watched this film for the first time in a cinema. I liked it very much',
 ];
 
 const RATING = [8.5, 6.3, 7.4, 9.1, 7.7, 10];
 const GENRE = ['Musical', 'Drama', 'Action', 'Detective', 'Crime', 'Comedy'];
-const DIRECTORS = ['Nic Ford', 'Alex Polly', 'Mikky Gordon', 'Tina log'];
-const WRITERS = ['Aash Aaron', 'J.J. Abrams', 'Jim Abrahams', 'Jon Avnet', 'Don Adams'];
-const ACTORS = ['Kevin Bacon', 'Kyle MacLachlan', 'Sigourney Weaver', 'Susan Sarandon', 'Sandra Bullock'];
-const COUTRIES = ['Argentina', 'China', 'Colombia', 'Germany', 'Italy', 'Russia', 'USA', 'Spain'];
-const EXTRA_FILM_TYPES = ['Top rated', 'Most commented'];
-const EMOTIONS = [
-  'angry.png',
-  'puke.png',
-  'sleeping.png',
-  'smile.png'
+const DIRECTORS = ['Nic Ford', 'Alex Polly', 'Mikky Gordon', ' log'];
+const WRITERS = [
+  'Aash Aaron',
+  '.J. Abrams',
+  'Jim Abrahams',
+  'Jon Avnet',
+  'Don Adams',
 ];
+const ACTORS = [
+  'Kevin Bacon',
+  'Kyle MacLachlan',
+  'Sigourney Weaver',
+  'Susan Sarandon',
+  'Sandra Bullock',
+];
+const COUTRIES = [
+  'Argentina',
+  'China',
+  'Colombia',
+  'Germany',
+  'Italy',
+  'Russia',
+  'USA',
+  'Spain',
+];
+const EXTRA_FILM_TYPES = ['Top rated', 'Most commented'];
+const EMOTIONS = ['angry.png', 'puke.png', 'sleeping.png', 'smile.png'];
 
-export { POSTERS, DESCRIPTION, COMMENT_TEXT, RATING, GENRE, DIRECTORS, WRITERS, ACTORS, COUTRIES, EXTRA_FILM_TYPES, EMOTIONS };
+export {
+  POSTERS,
+  DESCRIPTION,
+  COMMENT_TEXT,
+  RATING,
+  GENRE,
+  DIRECTORS,
+  WRITERS,
+  ACTORS,
+  COUTRIES,
+  EXTRA_FILM_TYPES,
+  EMOTIONS
+};
