@@ -13,7 +13,7 @@ import {
   getRandomIndex,
   getFilmDescription,
   generateDate
-} from './mock-utils';
+} from './utils-mock.js';
 
 export const generateCard = () => {
   const date = generateDate();

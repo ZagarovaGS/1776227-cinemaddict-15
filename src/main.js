@@ -9,23 +9,12 @@ import { generateCard } from './mock/card-mock.js';
 import { createPopupTemplate } from './view/popup.js';
 import { EXTRA_FILM_TYPES } from './mock/card-constants.js';
 import { generateComment } from './mock/comments-mock.js';
-import {
-  getWatchlistCount,
-  watchListCount,
-  getHistoryListCount,
-  historyListCount,
-  favoriteListCount,
-  getFavoriteListCount
-} from './mock/mock-utils.js';
 
 const CARDS_COUNT = 5;
 
 const cards = new Array(CARDS_COUNT).fill().map(generateCard);
 const popup = generateCard();
 const userComment = generateComment();
-getWatchlistCount();
-getHistoryListCount();
-getFavoriteListCount();
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 };
@@ -36,7 +25,7 @@ const footerElement = document.querySelector('.footer');
 
 render(
   mainElement,
-  createMainNavigationMenu(watchListCount, historyListCount, favoriteListCount),
+  createMainNavigationMenu(cards),
   'beforeend',
 );
 render(mainElement, createMoviesSortTemplate(), 'beforeend');
@@ -107,5 +96,3 @@ const showMoreCards = () => {
 };
 
 showMoreBtn.addEventListener('click', showMoreCards);
-
-export { cards };

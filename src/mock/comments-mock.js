@@ -1,4 +1,4 @@
-import { getRandomBetween, getRandomIndex, generateDate } from './mock-utils';
+import { getRandomBetween, getRandomIndex, generateDate } from './utils-mock.js';
 import { COMMENT_TEXT, WRITERS, EMOTIONS } from './card-constants.js';
 
 export const generateComment = () => {
