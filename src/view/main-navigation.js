@@ -1,3 +1,5 @@
+import { createElement } from '../utils.js';
+
 const CountStrategy = {
   Watch: 'Watch',
   History: 'History',
@@ -36,7 +38,7 @@ const countStrategies = {
 const getCount = (cards, countStrategy) => countStrategies[countStrategy](cards);
 
 
-export const createMainNavigationMenu = (cards) =>
+const createMainNavigationMenu = (cards) =>
   `<nav class="main-navigation">
   <div class="main-navigation__items">
     <a href="#all" class="main-navigation__item main-navigation__item--active">All movies</a>
@@ -46,3 +48,25 @@ export const createMainNavigationMenu = (cards) =>
   </div>
   <a href="#stats" class="main-navigation__additional">Stats</a>
   </nav>`;
+
+export default class SiteNavigation {
+  constructor(cards){
+    this._cards = cards;
+    this._element = null;
+  }
+
+  getTemplate(){
+    return createMainNavigationMenu(this._cards);
+  }
+
+  getElement(){
+    if(!this._element){
+      this._element = createElement(this.getTemplate());
+    }
+    return this._element;
+  }
+
+  removeElement(){
+    this._element = null;
+  }
+}
