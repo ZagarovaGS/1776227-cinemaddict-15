@@ -5,7 +5,7 @@ import SiteNavigationView from './view/main-navigation.js';
 import FilmCardView from './view/film-card.js';
 import SiteHeaderView from './view/site-header.js';
 import PopupCommentsView from './view/popup-comment.js';
-import TypesFilmsView from './view/popup-types-films.js';
+import PopupFilmsTypesView from './view/popup-types-films.js';
 import FilmPopupView from './view/popup.js';
 import ExtraFilmView from './view/film-list-extra.js';
 import { generateCard } from './mock/card-mock.js';
@@ -64,23 +64,27 @@ render(headerElement, new SiteHeaderView().getElement(), RenderPosition.BEFOREEN
 render(footerElement, new SiteFooterView().getElement(), RenderPosition.BEFOREEND);
 
 const popupView = new FilmPopupView(popup, userComment);
-const commentsContainer = popupView.getElement().querySelector('.film-details__bottom-container');
+const popupFormContainer = popupView.getElement().querySelector('.film-details__inner');
 const typeFilmsContainer = popupView.getElement().querySelector('.film-details__top-container');
+const popupContainer = createElement(new FilmPopupView(popup, userComment).getTemplate());
 
-const showPopup = () =>{
+const createPopup = () =>{
 
-  render(filmContainer, new FilmPopupView(popup, userComment).getElement(), RenderPosition.BEFOREEND);
-  render(commentsContainer, new PopupCommentsView(userComment).getElement(), RenderPosition.BEFOREEND );
-  render(typeFilmsContainer, new TypesFilmsView().getElement(), RenderPosition.BEFOREEND);
+  popupContainer.append(createElement(new PopupFilmsTypesView().getTemplate()));
+  popupContainer.append(createElement(new PopupCommentsView(userComment).getTemplate()));
+  const container = filmContainer.append(popupContainer);
+  return container;
 };
 
-const filmPopup = createElement(showPopup);
-//если вызываем showPopup-все время попап висит, а не вызываем -разметка
-const createPopup = () => filmListContainer.append(filmPopup);
-
 const cardTitle = filmContainer.querySelectorAll('.film-card__title');
-
 cardTitle.forEach((title) => title.addEventListener('click', createPopup));
+const cardPosters = filmContainer.querySelectorAll('.film-card__poster');
+cardPosters.forEach((poster) => poster.addEventListener('click', createPopup));
+const cardComments = filmContainer.querySelectorAll('.film-card__comments');
+cardComments.forEach((comments) => comments.addEventListener('click', createPopup));
+
+const popupCloseBtn = popupContainer.querySelector('.film-details__close-btn');
+popupCloseBtn.addEventListener('click', popupContainer.remove());
 
 
 const showMoreBtn = mainElement.querySelector('.films-list__show-more');

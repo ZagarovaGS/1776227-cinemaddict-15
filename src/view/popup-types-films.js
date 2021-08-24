@@ -11,7 +11,7 @@ const createTypesFilmsContainer = () =>
   id="favorite" name="favorite">Add to favorites</button>
 </section>`;
 
-export default class TypesFilms {
+export default class PopupFilmsTypes {
   constructor(){
     this._element = null;
   }
