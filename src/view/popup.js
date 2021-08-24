@@ -84,6 +84,9 @@ export default class FilmPopup {
     this._popup = popup,
     this._userComment = userComment,
     this._element = null;
+    this._menuBoard = null;
+    this._commentsBoard = null;
+    this._closeBtn = null;
   }
 
   getTemplate(){
@@ -99,5 +102,24 @@ export default class FilmPopup {
 
   removeElement(){
     this._element = null;
+  }
+  getMenuBoard(){
+    if(!this._menuBoard){
+      this._menuBoard = this.getElement().querySelector('.film-details__inner');
+    }
+    return this._menuBoard;
+  }
+  getCommentsBoard(){
+    if(!this._commentsBoard) {
+      this._commentsBoard = this.getElement().querySelector('.film-details__top-container');
+    }
+    return this._commentsBoard;
+  }
+
+  getCloseBtn(){
+    if(!this._closeBtn) {
+      this._closeBtn = this.getElement().querySelector('.film-details__close-btn');
+    }
+    return this._closeBtn;
   }
 }

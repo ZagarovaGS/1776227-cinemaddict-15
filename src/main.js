@@ -9,9 +9,9 @@ import PopupFilmsTypesView from './view/popup-types-films.js';
 import FilmPopupView from './view/popup.js';
 import ExtraFilmView from './view/film-list-extra.js';
 import { generateCard } from './mock/card-mock.js';
-import { EXTRA_FILM_TYPES } from './mock/card-constants.js';
+import { EXTRA_FILM_TYPES, POSTERS } from './mock/card-constants.js';
 import { generateComment } from './mock/comments-mock.js';
-import { createElement, render, RenderPosition} from './utils.js';
+import { render, RenderPosition} from './utils.js';
 import { getRandomBetween } from './mock/utils-mock.js';
 
 const CARDS_COUNT = 5;
@@ -36,9 +36,8 @@ const movieList = new SiteMovieListView();
 render(mainElement, new SortTemplateView().getElement(), RenderPosition.BEFOREEND);
 render(mainElement, movieList.getElement(), RenderPosition.BEFOREEND);
 
-const filmContainer = mainElement.querySelector('.films');
-const filmListContainer = filmContainer.querySelector('.films-list__container');
-
+const filmBoard = mainElement.querySelector('.films');
+const filmListContainer = filmBoard.querySelector('.films-list__container');
 
 const generateCards = (count, container) => {
   for (let i = 0; i < count; i++) {
@@ -50,42 +49,41 @@ generateCards(CARDS_COUNT, filmListContainer);
 
 const topRatedElement = new ExtraFilmView(cards[getRandomBetween(0,cards.length)], EXTRA_FILM_TYPES[0]);
 
-render(filmContainer, topRatedElement.getElement(), RenderPosition.BEFOREEND);
+render(filmBoard, topRatedElement.getElement(), RenderPosition.BEFOREEND);
 const extraContainer = mainElement.querySelector('.films-list--extra');
 const topRatedContainer = extraContainer.querySelector('.films-list__container');
 generateCards(EXTRA_CARDS_COUNT, topRatedContainer);
 
 const mostCommentedElement = new ExtraFilmView(cards[1], EXTRA_FILM_TYPES[1]);
-render(filmContainer, mostCommentedElement.getElement(), RenderPosition.BEFOREEND);
+render(filmBoard, mostCommentedElement.getElement(), RenderPosition.BEFOREEND);
 
 generateCards(EXTRA_CARDS_COUNT, mostCommentedElement.getElement().querySelector('.films-list__container'));
 
 render(headerElement, new SiteHeaderView().getElement(), RenderPosition.BEFOREEND);
 render(footerElement, new SiteFooterView().getElement(), RenderPosition.BEFOREEND);
 
+
 const popupView = new FilmPopupView(popup, userComment);
-const popupFormContainer = popupView.getElement().querySelector('.film-details__inner');
-const typeFilmsContainer = popupView.getElement().querySelector('.film-details__top-container');
-const popupContainer = createElement(new FilmPopupView(popup, userComment).getTemplate());
 
 const createPopup = () =>{
-
-  popupContainer.append(createElement(new PopupFilmsTypesView().getTemplate()));
-  popupContainer.append(createElement(new PopupCommentsView(userComment).getTemplate()));
-  const container = filmContainer.append(popupContainer);
-  return container;
+  const popupTypesView = new PopupFilmsTypesView();
+  const popupCommentsView = new PopupCommentsView(userComment);
+  popupView.getElement().append(popupTypesView.getElement());
+  popupView.getElement().append(popupCommentsView.getElement());
+  filmBoard.append(popupView.getElement());
 };
 
-const cardTitle = filmContainer.querySelectorAll('.film-card__title');
+const cardTitle = filmBoard.querySelectorAll('.film-card__title');
 cardTitle.forEach((title) => title.addEventListener('click', createPopup));
-const cardPosters = filmContainer.querySelectorAll('.film-card__poster');
+const cardPosters = filmBoard.querySelectorAll('.film-card__poster');
 cardPosters.forEach((poster) => poster.addEventListener('click', createPopup));
-const cardComments = filmContainer.querySelectorAll('.film-card__comments');
+const cardComments = filmBoard.querySelectorAll('.film-card__comments');
 cardComments.forEach((comments) => comments.addEventListener('click', createPopup));
 
-const popupCloseBtn = popupContainer.querySelector('.film-details__close-btn');
-popupCloseBtn.addEventListener('click', popupContainer.remove());
-
+const popupCloseBtn = popupView.getCloseBtn();
+popupCloseBtn.addEventListener('click', () =>{
+  popupView.getElement().remove();
+});
 
 const showMoreBtn = mainElement.querySelector('.films-list__show-more');
 

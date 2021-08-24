@@ -20,8 +20,8 @@ export const generateCard = () => {
   return {
     id: getRandomBetween(0, 20),
     film_info: {
-      title: POSTERS[getRandomIndex(POSTERS)].replace(/.png|.jpg/),
-      alternative_title: POSTERS[getRandomIndex(POSTERS)].replace(/.png|.jpg/),
+      title: POSTERS[getRandomIndex(POSTERS)].replace(/.png|.jpg/, ''),
+      alternative_title: POSTERS[getRandomIndex(POSTERS)].replace(/.png|.jpg/, ''),
       total_rating: RATING[getRandomIndex(RATING)],
       poster: './images/posters/' + POSTERS[getRandomIndex(POSTERS)],
       age_rating: getRandomBetween(0, 18),
