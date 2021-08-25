@@ -8,6 +8,6 @@ export const generateComment = () => {
     author: WRITERS[getRandomIndex(WRITERS)],
     comment: COMMENT_TEXT[getRandomIndex(COMMENT_TEXT)],
     date,
-    emotion: './images/emoji/' + EMOTIONS[getRandomIndex(EMOTIONS)],
+    emotion: `./images/emoji/${  EMOTIONS[getRandomIndex(EMOTIONS)]}`,
   };
 };

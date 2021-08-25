@@ -9,7 +9,7 @@ import PopupFilmsTypesView from './view/popup-types-films.js';
 import FilmPopupView from './view/popup.js';
 import ExtraFilmView from './view/film-list-extra.js';
 import { generateCard } from './mock/card-mock.js';
-import { EXTRA_FILM_TYPES, POSTERS } from './mock/card-constants.js';
+import { EXTRA_FILM_TYPES } from './mock/card-constants.js';
 import { generateComment } from './mock/comments-mock.js';
 import { render, RenderPosition} from './utils.js';
 import { getRandomBetween } from './mock/utils-mock.js';
@@ -63,23 +63,30 @@ render(headerElement, new SiteHeaderView().getElement(), RenderPosition.BEFOREEN
 render(footerElement, new SiteFooterView().getElement(), RenderPosition.BEFOREEND);
 
 
-const popupView = new FilmPopupView(popup, userComment);
+const popupView = new FilmPopupView(popup);
 
+let countPopupParts = 0;
 const createPopup = () =>{
+
+  countPopupParts++;
   const popupTypesView = new PopupFilmsTypesView();
   const popupCommentsView = new PopupCommentsView(userComment);
   popupView.getElement().append(popupTypesView.getElement());
   popupView.getElement().append(popupCommentsView.getElement());
   filmBoard.append(popupView.getElement());
+  if (countPopupParts > 1){
+    popupTypesView.getElement().remove();
+    popupCommentsView.getElement().remove();
+  }
 };
 
-const cardTitle = filmBoard.querySelectorAll('.film-card__title');
-cardTitle.forEach((title) => title.addEventListener('click', createPopup));
-const cardPosters = filmBoard.querySelectorAll('.film-card__poster');
-cardPosters.forEach((poster) => poster.addEventListener('click', createPopup));
-const cardComments = filmBoard.querySelectorAll('.film-card__comments');
-cardComments.forEach((comments) => comments.addEventListener('click', createPopup));
 
+const cardTitle = filmBoard.querySelectorAll('.film-card__title');
+cardTitle.forEach((title)=>title.addEventListener('click', createPopup));
+const cardPosters = filmBoard.querySelectorAll('.film-card__poster');
+cardPosters.forEach((posters)=>posters.addEventListener('click', createPopup ));
+const cardComments = filmBoard.querySelectorAll('.film-card__comments');
+cardComments.forEach((comment)=>comment.addEventListener('click', createPopup));
 const popupCloseBtn = popupView.getCloseBtn();
 popupCloseBtn.addEventListener('click', () =>{
   popupView.getElement().remove();

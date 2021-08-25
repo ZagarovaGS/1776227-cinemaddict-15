@@ -1,8 +1,8 @@
 import { createElement } from '../utils.js';
 
-const createPopupTemplate = (popup, userComment) => {
-  const { film_info} = popup;
-  const { id, author, comment, date, emotion} = userComment;
+const createPopupTemplate = (popup) => {
+  const { filmInfo} = popup;
+
 
   return `<section class="film-details">
   <form class="film-details__inner" action="" method="get">
@@ -12,50 +12,50 @@ const createPopupTemplate = (popup, userComment) => {
       </div>
       <div class="film-details__info-wrap">
         <div class="film-details__poster">
-          <img class="film-details__poster-img" src=${film_info.poster} alt="">
+          <img class="film-details__poster-img" src=${filmInfo.poster} alt="">
 
-          <p class="film-details__age">${film_info.age_rating}</p>
+          <p class="film-details__age">${filmInfo.ageRating}</p>
         </div>
 
         <div class="film-details__info">
           <div class="film-details__info-head">
             <div class="film-details__title-wrap">
-              <h3 class="film-details__title">${film_info.title}</h3>
-              <p class="film-details__title-original">Original: ${film_info.title}</p>
+              <h3 class="film-details__title">${filmInfo.title}</h3>
+              <p class="film-details__title-original">Original: ${filmInfo.title}</p>
             </div>
 
             <div class="film-details__rating">
-              <p class="film-details__total-rating">${film_info.total_rating}</p>
+              <p class="film-details__total-rating">${filmInfo.totalRating}</p>
             </div>
           </div>
 
           <table class="film-details__table">
             <tr class="film-details__row">
               <td class="film-details__term">Director</td>
-              <td class="film-details__cell">${film_info.director}</td>
+              <td class="film-details__cell">${filmInfo.director}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Writers</td>
-              <td class="film-details__cell">${film_info.writers}</td>
+              <td class="film-details__cell">${filmInfo.writers}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Actors</td>
-              <td class="film-details__cell">${film_info.actors}</td>
+              <td class="film-details__cell">${filmInfo.actors}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Release Date</td>
-              <td class="film-details__cell">${film_info.release.date}</td>
+              <td class="film-details__cell">${filmInfo.release.date}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Runtime</td>
-              <td class="film-details__cell">${film_info.runtime}</td>
+              <td class="film-details__cell">${filmInfo.runtime}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Country</td>
-              <td class="film-details__cell">${film_info.release.release_coutry}</td>
+              <td class="film-details__cell">${filmInfo.release.release_coutry}</td>
             </tr>
             <tr class="film-details__row">
-              <td class="film-details__term">${film_info.genre}</td>
+              <td class="film-details__term">${filmInfo.genre}</td>
               <td class="film-details__cell">
                 <span class="film-details__genre">Drama</span>
                 <span class="film-details__genre">Film-Noir</span>
@@ -65,7 +65,7 @@ const createPopupTemplate = (popup, userComment) => {
           </table>
 
           <p class="film-details__film-description">
-           ${film_info.description}
+           ${filmInfo.description}
           </p>
         </div>
       </div>
@@ -103,12 +103,14 @@ export default class FilmPopup {
   removeElement(){
     this._element = null;
   }
+
   getMenuBoard(){
     if(!this._menuBoard){
       this._menuBoard = this.getElement().querySelector('.film-details__inner');
     }
     return this._menuBoard;
   }
+
   getCommentsBoard(){
     if(!this._commentsBoard) {
       this._commentsBoard = this.getElement().querySelector('.film-details__top-container');

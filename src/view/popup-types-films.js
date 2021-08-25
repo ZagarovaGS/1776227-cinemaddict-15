@@ -1,7 +1,7 @@
 import { createElement } from '../utils.js';
 
 const createTypesFilmsContainer = () =>
-`<section class="film-details__controls">
+  `<section class="film-details__controls">
 <button type="button" class="film-details__control-button film-details__control-button--watchlist"
   id="watchlist" name="watchlist">Add to watchlist</button>
 <button type="button"

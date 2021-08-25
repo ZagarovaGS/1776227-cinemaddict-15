@@ -1,7 +1,7 @@
 import { createElement } from '../utils.js';
 
 const createFooter = () =>
-  `<p>130 291 movies inside</p>`;
+  '<p>130 291 movies inside</p>';
 
 export default class SiteFooter {
   constructor(){

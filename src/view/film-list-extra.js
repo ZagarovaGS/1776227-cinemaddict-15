@@ -1,16 +1,12 @@
 import { createElement } from '../utils.js';
-import  FilmCardView  from './film-card.js';
 
-const createFilmExtraListTemplate = (card, filmType) => {
-
-  return `<section class="films-list films-list--extra">
+const createFilmExtraListTemplate = (card, filmType) => `<section class="films-list films-list--extra">
   <h2 class="films-list__title">${filmType}</h2>
 
   <div class="films-list__container">
 
   </div>
 </section>`;
-};
 
 export default class ExtraFilm {
   constructor(card, filmType){

@@ -9,7 +9,7 @@ const countStrategies = {
   [CountStrategy.Watch]: (cards) => {
     let count = 0;
     cards.forEach((card) => {
-      if (card.user_details.watchlist === true) {
+      if (card.userDetails.watchlist === true) {
         count++;
       }
     });
@@ -18,7 +18,7 @@ const countStrategies = {
   [CountStrategy.History]: (cards) => {
     let count = 0;
     cards.forEach((card) => {
-      if (card.user_details.already_watched === true) {
+      if (card.userDetails.already_watched === true) {
         count++;
       }
     });
@@ -27,7 +27,7 @@ const countStrategies = {
   [CountStrategy.Favorite]: (cards) => {
     let count = 0;
     cards.forEach((card) => {
-      if (card.user_details.favorite === true) {
+      if (card.userDetails.favorite === true) {
         count++;
       }
     });
