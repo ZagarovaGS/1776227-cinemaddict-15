@@ -13,8 +13,8 @@ const countStrategies = {
         if (card.userDetails.watchlist === true) {
           count++;
         }
-      })
-    };
+      });
+    }
     return count;
   },
   [CountStrategy.History]: (cards) => {
@@ -24,8 +24,8 @@ const countStrategies = {
         if (card.userDetails.already_watched === true) {
           count++;
         }
-    })
-  };
+      });
+    }
     return count;
   },
   [CountStrategy.Favorite]: (cards) => {
@@ -35,8 +35,8 @@ const countStrategies = {
         if (card.userDetails.favorite === true) {
           count++;
         }
-    })
-  };
+      });
+    }
     return count;
   },
 };
