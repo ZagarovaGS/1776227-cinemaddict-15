@@ -8,29 +8,35 @@ const CountStrategy = {
 const countStrategies = {
   [CountStrategy.Watch]: (cards) => {
     let count = 0;
-    cards.forEach((card) => {
-      if (card.userDetails.watchlist === true) {
-        count++;
-      }
-    });
+    if (cards !==0){
+      cards.forEach((card) => {
+        if (card.userDetails.watchlist === true) {
+          count++;
+        }
+      });
+    }
     return count;
   },
   [CountStrategy.History]: (cards) => {
     let count = 0;
-    cards.forEach((card) => {
-      if (card.userDetails.already_watched === true) {
-        count++;
-      }
-    });
+    if (cards !==0){
+      cards.forEach((card) => {
+        if (card.userDetails.already_watched === true) {
+          count++;
+        }
+      });
+    }
     return count;
   },
   [CountStrategy.Favorite]: (cards) => {
     let count = 0;
-    cards.forEach((card) => {
-      if (card.userDetails.favorite === true) {
-        count++;
-      }
-    });
+    if (cards !==0){
+      cards.forEach((card) => {
+        if (card.userDetails.favorite === true) {
+          count++;
+        }
+      });
+    }
     return count;
   },
 };
