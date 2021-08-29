@@ -3,6 +3,7 @@ import PopupFilmsTypesView from './view/popup-types-films.js';
 import FilmPopupView from './view/popup.js';
 import { generateCard } from './mock/card-mock.js';
 import { generateComment } from './mock/comments-mock.js';
+import SiteMovieList from './view/site-list.js';
 
 const popup = generateCard();
 const KEYCODE_NUMBER = 27;
@@ -27,24 +28,19 @@ const initPopup = (board) => {
     }
   };
 
+  new SiteMovieList().setOpenPopupByTitleHandler(()=>createPopup());
+  new SiteMovieList().setOpenPopupByPosterHandler(()=>createPopup());
+  new SiteMovieList().setOpenPopupByCommentsHandler(()=>createPopup());
 
-  const cardTitle = board.querySelectorAll('.film-card__title');
-  cardTitle.forEach((title)=>title.addEventListener('click', createPopup));
-  const cardPosters = board.querySelectorAll('.film-card__poster');
-  cardPosters.forEach((posters)=>posters.addEventListener('click', createPopup ));
-  const cardComments = board.querySelectorAll('.film-card__comments');
-  cardComments.forEach((comment)=>comment.addEventListener('click', createPopup));
-  const popupCloseBtn = popupView.getCloseBtn();
-  popupCloseBtn.addEventListener('click', () =>{
-    popupView.getElement().remove();
-  });
+  const removePopup = () => popupView.getElement().remove();
+
+  popupView.setClosePopupHandler(()=>removePopup());
 
   const closePopupEsc = (evt) => {
     if (evt.keyCode === KEYCODE_NUMBER) {
-      popupView.getElement().remove();
+      removePopup();
     }
   };
-
   document.addEventListener('keydown', closePopupEsc);
 };
 

@@ -1,4 +1,4 @@
-import { createElement } from '../utils.js';
+import AbstractView from './abstract';
 
 const createPopupComments = (userComment) => {
   const { id, author, comment, date, emotion} = userComment;
@@ -59,25 +59,15 @@ const createPopupComments = (userComment) => {
 };
 
 
-export default class PopupComments {
+export default class PopupComments extends AbstractView {
   constructor(userComment){
+    super(),
     this._userComment = userComment;
     this._element = null;
   }
 
   getTemplate(){
     return createPopupComments(this._userComment);
-  }
-
-  getElement(){
-    if(!this._element){
-      this._element = createElement(this.getTemplate());
-    }
-    return this._element;
-  }
-
-  removeElement(){
-    this._element = null;
   }
 }
 

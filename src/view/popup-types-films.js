@@ -1,4 +1,4 @@
-import { createElement } from '../utils.js';
+import AbstractView from './abstract';
 
 const createTypesFilmsContainer = () =>
   `<section class="film-details__controls">
@@ -11,23 +11,9 @@ const createTypesFilmsContainer = () =>
   id="favorite" name="favorite">Add to favorites</button>
 </section>`;
 
-export default class PopupFilmsTypes {
-  constructor(){
-    this._element = null;
-  }
+export default class PopupFilmsTypes extends AbstractView {
 
   getTemplate(){
     return createTypesFilmsContainer();
-  }
-
-  getElement(){
-    if(!this._element){
-      this._element = createElement(this.getTemplate());
-    }
-    return this._element;
-  }
-
-  removeElement(){
-    this._element = null;
   }
 }
