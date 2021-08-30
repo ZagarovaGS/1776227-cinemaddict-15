@@ -1,4 +1,4 @@
-import { createElement } from '../utils.js';
+import AbstractView from './abstract';
 
 const CountStrategy = {
   Watch: 'Watch',
@@ -55,24 +55,14 @@ const createMainNavigationMenu = (cards) =>
   <a href="#stats" class="main-navigation__additional">Stats</a>
   </nav>`;
 
-export default class SiteNavigation {
+export default class SiteNavigation extends AbstractView {
   constructor(cards){
+    super(),
     this._cards = cards;
     this._element = null;
   }
 
   getTemplate(){
     return createMainNavigationMenu(this._cards);
-  }
-
-  getElement(){
-    if(!this._element){
-      this._element = createElement(this.getTemplate());
-    }
-    return this._element;
-  }
-
-  removeElement(){
-    this._element = null;
   }
 }
