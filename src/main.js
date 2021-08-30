@@ -76,7 +76,12 @@ render(headerElement, new SiteHeaderView(), RenderPosition.BEFOREEND);
 render(footerElement, new SiteFooterView(), RenderPosition.BEFOREEND);
 
 
-initPopup(filmBoard);
+const filmCardView = new FilmCardView(cards);
+
+filmCardView.setOpenPopupByTitleHandler(()=>initPopup(filmBoard));
+filmCardView.setOpenPopupByPosterHandler(()=>initPopup(filmBoard));
+filmCardView.setOpenPopupByCommentsHandler(()=>initPopup(filmBoard));
+
 
 const showMoreBtn = mainElement.querySelector('.films-list__show-more');
 
