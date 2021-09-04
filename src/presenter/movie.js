@@ -10,13 +10,15 @@ import PopupFilmsTypesView from '../view/popup-types-films.js';
 import SiteFooterView from '../view/site-footer.js';
 import SiteHeaderView from '../view/site-header.js';
 import { render, RenderPosition } from '../render-utils.js';
-import {cards, CARDS_COUNT} from '../view/render-cards.js';
 import { getRandomBetween } from '../mock/utils-mock.js';
 import { EXTRA_FILM_TYPES, EXTRA_CARDS_COUNT } from '../mock/card-constants.js';
 import { initPopup } from '../popup-utils.js';
+import  MovieComponent from './movie-component.js';
+import { generateCard, cards } from '../mock/card-mock';
 
 let cardsCount = 0;
 const MAX_COUNT = 21;
+const CARDS_COUNT = 5;
 
 
 export default class Movie {
@@ -33,8 +35,7 @@ export default class Movie {
     this._popupFilmsTypes = new PopupFilmsTypesView();
     this._siteFooter = new SiteFooterView();
     this._siteHeader = new SiteHeaderView();
-    this._filmCardComponent = null;
-    this._popupComponent = null;
+
 
   }
   init(){
@@ -45,7 +46,7 @@ export default class Movie {
     render(headerElement, this._siteHeader.getElement(), RenderPosition.BEFOREEND);
     render(footerElement, this._siteFooter.getElement(), RenderPosition.BEFOREEND);
 
-    this._renderNavigation(cards);
+    this._renderNavigation();
     this._renderSort();
     this._renderMovieList();
     if (cards === 0){
@@ -59,7 +60,18 @@ export default class Movie {
     this._showMoreCards(cards);
   }
 //---------------------------------------------------------------------------------------------------------------
-  _renderNavigation(){
+_generateCards(cardCount){
+  const newFilm = new MovieComponent().init();
+  console.log(newFilm)
+  let filmCards = 0;
+  if (cardCount > 0){
+    filmCards = new Array(CARDS_COUNT).fill().map(newFilm);
+}
+return filmCards;
+}
+
+_renderNavigation(){
+
     render( this._mainElement, this._siteNavigation.getElement(), RenderPosition.BEFOREEND );
   }
 
@@ -76,17 +88,25 @@ export default class Movie {
       render(this._renderMovieList.getElement(), this._movieListEmpty.getElement(), RenderPosition.BEFOREEND);
   }
 
+  _renderCard(card) {
+    const filmPresenter = new MovieComponent();
+    filmPresenter.init(card);
+    //this._filmPresenter.set(film.id, filmPresenter);
+  }
+
   _renderCards(count, container){
 
       if (cards){
         for (let i = 0; i < count; i++) {
-          const cardTemplate = new FilmCardView(cards[i]);
+          const cardTemplate = new FilmCardView(this._generateCards(CARDS_COUNT)[i]);
           render(container, cardTemplate.getElement(), RenderPosition.AFTERBEGIN);
         }
       };
   }
 
   _renderTopRatedList(cards){
+
+
     const filmBoard = this._mainElement.querySelector('.films');
     const topRatedElement = new ExtraFilmView(cards[getRandomBetween(0,cards.length)], EXTRA_FILM_TYPES[0]);
 

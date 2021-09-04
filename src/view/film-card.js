@@ -1,3 +1,4 @@
+import { getRandomBetween } from '../mock/utils-mock';
 import AbstractView from './abstract';
 
 const createFilmCardTemplate = (card) => {
@@ -13,7 +14,7 @@ const createFilmCardTemplate = (card) => {
   </p>
   <img src=${filmInfo.poster} alt="" class="film-card__poster">
   <p class="film-card__description">${filmInfo.description}</p>
-  <a class="film-card__comments">Comment: ${id}</a>
+  <a class="film-card__comments">Comment: ${getRandomBetween(1, 20)}</a>
   <div class="film-card__controls">
     <button class="film-card__controls-item film-card__controls-item--add-to-watchlist" type="button">Add to watchlist</button>
     <button class="film-card__controls-item film-card__controls-item--mark-as-watched" type="button">Mark as watched</button>
