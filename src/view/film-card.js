@@ -54,4 +54,32 @@ export default class FilmCard extends AbstractView {
     this._callback.openPopupClick = callback;
     document.querySelector('.films').querySelectorAll('.film-card__comments').forEach((comment)=>comment.addEventListener('click', this._openPopupClickHandler));
   }
+
+  _addToWatchlistHandler(){
+
+    this._callback.addToWatchlist();
+  }
+
+  setAddToWatchlist(callback){
+    this._callback.addToWatchlist = callback;
+    document.querySelector('.film-card__controls-item--add-to-watchlist').addEventListener('click', this._addToWatchlistHandler);
+  }
+
+  _markAsWatchedHandler(){
+    this._callback = markAsWatched();
+  }
+
+  setMarkAsWathed(callback){
+    this._callback.markAsWatched = callback;
+    document.querySelector('.film-card__controls-item--mark-as-watched').addEventListener('click', this._markAsWatchedHandler);
+  }
+
+  _markAsFavoriteHandler(){
+    this._callback = markAsFavorite();
+  }
+
+  setMarkAsFavorite(callback){
+    this._callback.markAsWatched = callback;
+    document.querySelector('.film-card__controls-item--favorite').addEventListener('click', this._markAsWatchedHandler);
+  }
 }

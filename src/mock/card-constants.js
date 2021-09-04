@@ -61,6 +61,7 @@ const COUTRIES = [
 ];
 const EXTRA_FILM_TYPES = ['Top rated', 'Most commented'];
 const EMOTIONS = ['angry.png', 'puke.png', 'sleeping.png', 'smile.png'];
+const EXTRA_CARDS_COUNT = 2;
 
 export {
   POSTERS,
@@ -73,5 +74,6 @@ export {
   ACTORS,
   COUTRIES,
   EXTRA_FILM_TYPES,
-  EMOTIONS
+  EMOTIONS,
+  EXTRA_CARDS_COUNT
 };

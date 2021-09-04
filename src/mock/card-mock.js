@@ -14,11 +14,11 @@ import {
   getFilmDescription,
   generateDate
 } from './utils-mock.js';
-
+import { nanoid } from 'nanoid';
 export const generateCard = () => {
   const date = generateDate();
   return {
-    id: getRandomBetween(0, 20),
+    id: nanoid(),
     filmInfo: {
       title: POSTERS[getRandomIndex(POSTERS)].replace(/.png|.jpg/, ''),
       alternativeTitle: POSTERS[getRandomIndex(POSTERS)].replace(/.png|.jpg/, ''),

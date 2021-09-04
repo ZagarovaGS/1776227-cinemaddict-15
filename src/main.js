@@ -11,8 +11,9 @@ import { EXTRA_FILM_TYPES } from './mock/card-constants.js';
 import { render, RenderPosition} from './render-utils.js';
 import { getRandomBetween } from './mock/utils-mock.js';
 import { initPopup } from './popup-utils.js';
+import Movie from './presenter/movie.js';
 
-const CARDS_COUNT = 5;
+/*const CARDS_COUNT = 5;
 const EXTRA_CARDS_COUNT = 2;
 
 const generateActualCards = (cardCount) => {
@@ -111,5 +112,7 @@ const showMoreCards = () => {
   }
 };
 
-showMoreBtn.addEventListener('click', showMoreCards);
+showMoreBtn.addEventListener('click', showMoreCards);*/
+new Movie().init();
+
 
