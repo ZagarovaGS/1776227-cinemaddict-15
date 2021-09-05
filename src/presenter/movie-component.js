@@ -1,18 +1,18 @@
 import { initPopup } from '../popup-utils.js';
-import { render, RenderPosition, remove } from '../render-utils.js';
+import { render, RenderPosition, remove, replace } from '../render-utils.js';
 import FilmCardView from '../view/film-card.js';
 import { generateCard } from '../mock/card-mock.js';
 
 const Mode = {
   DEFAULT: 'DEFAULT',
   POPUP: 'POPUP',
-}
+};
 
 export default class MovieComponent {
   constructor(filmBoard){
     this._filmBoard = filmBoard;
-   // this._changeData = changeData;
-   // this._changeMode = changeMode;
+    // this._changeData = changeData;
+    // this._changeMode = changeMode;
 
     this._cardComponent = null;
     this._popupComponent = null;
@@ -37,7 +37,7 @@ export default class MovieComponent {
     }
 
     if (prevCardComponent !== null && this._filmBoard.contains((prevCardComponent.getElement())) && this._mode === Mode.DEFAULT) {
-      replace(this._cardComponent, prevFilmComponent);
+      replace(this._cardComponent, prevCardComponent);
     }
 
     if (prevCardComponent !== null && this._cardComponent.contains((prevPopupComponent.getElement())) && this._mode === Mode.POPUP) {
@@ -45,13 +45,13 @@ export default class MovieComponent {
       replace(this._cardComponent, prevCardComponent);
     }
 
-  if(prevCardComponent){
-    remove(prevCardComponent);
-  };
+    if(prevCardComponent){
+      remove(prevCardComponent);
+    }
 
-  if(prevPopupComponent){
-    prevPopupComponentremove();
-  };
+    if(prevPopupComponent){
+      prevPopupComponent.remove();
+    }
   }
 
   destroy() {

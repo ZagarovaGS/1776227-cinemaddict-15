@@ -1,16 +1,3 @@
-import SiteMovieListView from './view/site-list.js';
-import SiteFooterView from './view/site-footer.js';
-import SortView from './view/sort-movies.js';
-import SiteNavigationView from './view/main-navigation.js';
-import FilmCardView from './view/film-card.js';
-import SiteHeaderView from './view/site-header.js';
-import ExtraFilmView from './view/film-list-extra.js';
-import MovieListEmptyView from './view/list-empty.js';
-import { generateCard } from './mock/card-mock.js';
-import { EXTRA_FILM_TYPES } from './mock/card-constants.js';
-import { render, RenderPosition} from './render-utils.js';
-import { getRandomBetween } from './mock/utils-mock.js';
-import { initPopup } from './popup-utils.js';
 import Movie from './presenter/movie.js';
 import MovieComponent from './presenter/movie-component.js';
 

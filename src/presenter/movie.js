@@ -14,10 +14,11 @@ import { getRandomBetween } from '../mock/utils-mock.js';
 import { EXTRA_FILM_TYPES, EXTRA_CARDS_COUNT } from '../mock/card-constants.js';
 import { initPopup } from '../popup-utils.js';
 import  MovieComponent from './movie-component.js';
-import { generateCard, cards } from '../mock/card-mock';
+import { generateCard, cards, maxCountCards } from '../mock/card-mock.js';
+import MovieBoardView from '../view/film-board.js';
 
-let cardsCount = 0;
-const MAX_COUNT = 21;
+
+const cardsCount = 0;
 const CARDS_COUNT = 5;
 
 
@@ -35,9 +36,12 @@ export default class Movie {
     this._popupFilmsTypes = new PopupFilmsTypesView();
     this._siteFooter = new SiteFooterView();
     this._siteHeader = new SiteHeaderView();
+    this._movieBoard = new MovieBoardView();
+    this._renderCount = CARDS_COUNT;
 
 
   }
+
   init(){
 
     const headerElement = document.querySelector('.header');
@@ -46,12 +50,14 @@ export default class Movie {
     render(headerElement, this._siteHeader.getElement(), RenderPosition.BEFOREEND);
     render(footerElement, this._siteFooter.getElement(), RenderPosition.BEFOREEND);
 
+
     this._renderNavigation();
     this._renderSort();
+    render(this._mainElement, this._movieBoard.getElement(), RenderPosition.BEFOREEND);
     this._renderMovieList();
     if (cards === 0){
       this._renderEmptyList();
-    };
+    }
 
     this._renderCards(CARDS_COUNT, this._movieList.getElement());
     this._renderTopRatedList(cards);
@@ -59,18 +65,19 @@ export default class Movie {
     this._openPopup();
     this._showMoreCards(cards);
   }
-//---------------------------------------------------------------------------------------------------------------
-_generateCards(cardCount){
-  const newFilm = new MovieComponent().init();
-  console.log(newFilm)
-  let filmCards = 0;
-  if (cardCount > 0){
-    filmCards = new Array(CARDS_COUNT).fill().map(newFilm);
-}
-return filmCards;
-}
 
-_renderNavigation(){
+  //---------------------------------------------------------------------------------------------------------------
+  _generateCards(cardCount){
+    // const newFilm = new MovieComponent().init();
+
+    let filmCards = 0;
+    if (cardCount > 0){
+      filmCards = new Array(CARDS_COUNT).fill().map(generateCard);
+    }
+    return filmCards;
+  }
+
+  _renderNavigation(){
 
     render( this._mainElement, this._siteNavigation.getElement(), RenderPosition.BEFOREEND );
   }
@@ -81,11 +88,11 @@ _renderNavigation(){
 
   _renderMovieList(){
 
-    render(this._mainElement, this._movieList.getElement(), RenderPosition.BEFOREEND);
+    render(this._movieBoard.getElement(), this._movieList.getElement(), RenderPosition.AFTERBEGIN);
   }
 
   _renderEmptyList(){
-      render(this._renderMovieList.getElement(), this._movieListEmpty.getElement(), RenderPosition.BEFOREEND);
+    render(this._renderMovieList.getElement(), this._movieListEmpty.getElement(), RenderPosition.BEFOREEND);
   }
 
   _renderCard(card) {
@@ -96,15 +103,15 @@ _renderNavigation(){
 
   _renderCards(count, container){
 
-      if (cards){
-        for (let i = 0; i < count; i++) {
-          const cardTemplate = new FilmCardView(this._generateCards(CARDS_COUNT)[i]);
-          render(container, cardTemplate.getElement(), RenderPosition.AFTERBEGIN);
-        }
-      };
+    if (cards){
+      for (let i = 0; i < count; i++) {
+        const cardTemplate = new FilmCardView(this._generateCards(CARDS_COUNT)[i]);
+        render(container, cardTemplate, RenderPosition.BEFOREEND);
+      }
+    }
   }
 
-  _renderTopRatedList(cards){
+  _renderTopRatedList(){
 
 
     const filmBoard = this._mainElement.querySelector('.films');
@@ -116,7 +123,7 @@ _renderNavigation(){
     this._renderCards(EXTRA_CARDS_COUNT, topRatedContainer);
   }
 
-  _renderMostCommentedList(cards){
+  _renderMostCommentedList(){
     const filmBoard = this._mainElement.querySelector('.films');
     const mostCommentedElement = new ExtraFilmView(cards[1], EXTRA_FILM_TYPES[1]);
     render(filmBoard, mostCommentedElement, RenderPosition.BEFOREEND);
@@ -132,10 +139,22 @@ _renderNavigation(){
     filmCardView.setOpenPopupByCommentsHandler(()=>initPopup(filmBoard));
   }
 
-  loadMoreCardsClick(){
-    const showMoreBtn = this._movieList.getElement().querySelector('.films-list__show-more');
+  loadMoreCardsClick(card){
+    const showMoreBtn = this._movieBoard.getElement().querySelector('.films-list__show-more');
 
-    cardsCount++;
+    const from = this._renderCount;
+    const to = this._renderCount + CARDS_COUNT;
+    console.log('maxCountCards slice',maxCountCards.slice(from, to));
+    maxCountCards
+      .slice(from, to)
+      .forEach((cardsPart)=> this._renderCards(CARDS_COUNT, this._movieList.getElement()));
+    console.log('from', from, 'to', to);
+
+    this._renderCount += CARDS_COUNT;
+    if (this._renderCount >= maxCountCards.length) {
+      showMoreBtn.remove();
+    }
+    /*cardsCount++;
 
     const totalCount = CARDS_COUNT + cardsCount*CARDS_COUNT;
     if (
@@ -155,11 +174,11 @@ _renderNavigation(){
     ) {
       this._renderCards(CARDS_COUNT, this._movieList.getElement());
       showMoreBtn.style = 'display: none';
-    }
-    };
+    }*/
+  }
 
-  _showMoreCards(cards){
+  _showMoreCards(){
 
-    new SiteMovieListView(cards).setLoadMoreCardsClick(()=>this.loadMoreCardsClick(cards));
+    new MovieBoardView().setLoadMoreCardsClick(()=>this.loadMoreCardsClick());
   }
 }

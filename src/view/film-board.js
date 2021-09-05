@@ -1,19 +1,24 @@
 import AbstractView from './abstract';
 
-const createMoviesListTemplate = () =>(
-  `<div class="films-list__container">
+const createMoviesBoard = () =>(
+  `<section class="films">
+<section class="films-list">
+  <h2 class="films-list__title visually-hidden">All movies. Upcoming</h2>
 
-  </div>`
+
+  <button class="films-list__show-more">Show more</button>
+</section>
+</section>`
 );
 
-export default class SiteMovieList extends AbstractView {
+export default class MovieBoard extends AbstractView {
   constructor(){
     super();
     this._handleLoadMoreCardsClick = this._handleLoadMoreCardsClick.bind(this);
   }
 
   getTemplate(){
-    return createMoviesListTemplate();
+    return createMoviesBoard();
   }
 
   _handleLoadMoreCardsClick(){

@@ -2,7 +2,7 @@ import { getRandomBetween } from '../mock/utils-mock';
 import AbstractView from './abstract';
 
 const createFilmCardTemplate = (card) => {
-  const { id,  filmInfo} = card;
+  const { filmInfo} = card;
 
   return `<article class="film-card">
   <h3 class="film-card__title">${filmInfo.title}</h3>
@@ -67,7 +67,7 @@ export default class FilmCard extends AbstractView {
   }
 
   _markAsWatchedHandler(){
-    this._callback = markAsWatched();
+    this._callback.markAsWatched();
   }
 
   setMarkAsWathed(callback){
@@ -76,7 +76,7 @@ export default class FilmCard extends AbstractView {
   }
 
   _markAsFavoriteHandler(){
-    this._callback = markAsFavorite();
+    this._callback.markAsFavorite();
   }
 
   setMarkAsFavorite(callback){

@@ -6,7 +6,8 @@ import {
   DIRECTORS,
   WRITERS,
   ACTORS,
-  COUTRIES
+  COUTRIES,
+  MAX_COUNT_CARDS
 } from './card-constants.js';
 import {
   getRandomBetween,
@@ -56,6 +57,9 @@ const generateActualCards = (cardCount) => {
 };
 
 const cards = generateActualCards(CARDS_COUNT);
+const generateAllCards = () => new Array(MAX_COUNT_CARDS).fill().map(generateCard);
+const maxCountCards = generateAllCards();
+
+export {cards, CARDS_COUNT, generateCard, maxCountCards};
 
 
-export {cards, CARDS_COUNT, generateCard};
