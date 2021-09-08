@@ -2,7 +2,7 @@ import { getRandomBetween } from '../mock/utils-mock';
 import AbstractView from './abstract';
 
 const createFilmCardTemplate = (card) => {
-  const { filmInfo} = card;
+  const {filmInfo} = card;
 
   return `<article class="film-card">
   <h3 class="film-card__title">${filmInfo.title}</h3>

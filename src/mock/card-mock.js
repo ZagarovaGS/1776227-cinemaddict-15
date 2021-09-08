@@ -15,6 +15,7 @@ import {
   getFilmDescription,
   generateDate
 } from './utils-mock.js';
+
 import { nanoid } from 'nanoid';
 
 const generateCard = () => {

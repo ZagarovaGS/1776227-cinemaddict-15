@@ -62,7 +62,8 @@ const COUTRIES = [
 const EXTRA_FILM_TYPES = ['Top rated', 'Most commented'];
 const EMOTIONS = ['angry.png', 'puke.png', 'sleeping.png', 'smile.png'];
 const EXTRA_CARDS_COUNT = 2;
-const MAX_COUNT_CARDS = 9;
+const MAX_COUNT_CARDS = 11;
+const CARDS_COUNT = 5;
 
 export {
   POSTERS,
@@ -77,5 +78,6 @@ export {
   EXTRA_FILM_TYPES,
   EMOTIONS,
   EXTRA_CARDS_COUNT,
-  MAX_COUNT_CARDS
+  MAX_COUNT_CARDS,
+  CARDS_COUNT
 };

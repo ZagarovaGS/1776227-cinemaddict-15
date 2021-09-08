@@ -1,5 +1,6 @@
 import Movie from './presenter/movie.js';
 import MovieComponent from './presenter/movie-component.js';
+import { cards } from './mock/card-mock.js';
 
 /*const CARDS_COUNT = 5;
 const EXTRA_CARDS_COUNT = 2;
@@ -101,6 +102,7 @@ const showMoreCards = () => {
 };
 
 showMoreBtn.addEventListener('click', showMoreCards);*/
+
 new Movie().init();
 new MovieComponent().init();
 
